@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   Radio,
   RadioGroup,
@@ -7,14 +8,33 @@ import {
   Table,
   TableContainer,
   Tbody,
+  Td,
   Text,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteData, getCountriesData } from "../Redux/action";
 
 const Homepage = () => {
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+const countriesData = useSelector((state)=>state.reducer.countries)
+  useEffect(()=>{
+    dispatch(getCountriesData())
+  },[])
+
+  const handleDelete = (id) =>{
+    dispatch(deleteData(id))
+    .then((r)=>{dispatch(getCountriesData())
+      navigate('/')
+    });
+  }
+console.log(countriesData);
   return (
     <Box>
       <Flex padding="0 1rem" mb="2rem">
@@ -45,11 +65,37 @@ const Homepage = () => {
           </Thead>
           <Tbody data-cy="table-body">
             {/* map through the fetched country list, to form table rows */}
+            {countriesData?.length>0 && countriesData.map((el)=>{
+              return(
+               <Tr key={el.id}>
+                <Th>{el.country}</Th>
+                <Th>{el.city}</Th>
+                <Th>{el.population}</Th>
+                <Th><Link to={`/country/${el.id}`}>Edit</Link></Th>
+                <Th><BUTTON id={el.id} handledelete={handleDelete}/></Th>
+
+
+
+
+               </Tr>
+               
+              )
+            })}
+              
+
+            
           </Tbody>
         </Table>
       </TableContainer>
     </Box>
   );
 };
+
+const BUTTON =({id,handledelete})=>{
+  return(
+    <Button onClick={()=>handledelete(id)}>Delete</Button>
+  )
+}
+
 
 export default Homepage;
