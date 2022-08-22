@@ -2,13 +2,14 @@ import { Box, Button, Heading, Input, Text } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCountriesData, updateCountriesData } from "../Redux/action";
 
 export const Editpage = () => {
   const dispatch=useDispatch();
   const {id}=useParams();
   const navigate=useNavigate();
+
   const [country,setCountry] = useState('');
   const [population,setPopulation] = useState('');
 
