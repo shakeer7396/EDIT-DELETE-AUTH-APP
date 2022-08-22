@@ -68,8 +68,8 @@ export const reducer = (state = initialState,action) => {
                     isLoading:false,
                     isError:true,
                   }
-      default:
-        return state;
+                default:
+                  return state;
 
   }
   
