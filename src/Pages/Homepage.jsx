@@ -68,11 +68,11 @@ console.log(countriesData);
             {countriesData?.length>0 && countriesData.map((el)=>{
               return(
                <Tr key={el.id}>
-                <Th>{el.country}</Th>
-                <Th>{el.city}</Th>
-                <Th>{el.population}</Th>
-                <Th><Link to={`/country/${el.id}`}>Edit</Link></Th>
-                <Th><BUTTON id={el.id} handledelete={handleDelete}/></Th>
+                <Td>{el.country}</Td>
+                <Td>{el.city}</Td>
+                <Td>{el.population}</Td>
+                <Td style={{background:"orange",color:"green",borderRadius:"30px"}}><Link to={`/country/${el.id}`}>Edit</Link></Td>
+                <Td style={{color:"red"}}><BUTTON id={el.id} handledelete={handleDelete}/></Td>
 
 
 
