@@ -23,18 +23,21 @@ import { deleteData, getCountriesData } from "../Redux/action";
 const Homepage = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
+
 const countriesData = useSelector((state)=>state.reducer.countries)
+
   useEffect(()=>{
     dispatch(getCountriesData())
   },[])
-
+  console.log(countriesData);
+  
   const handleDelete = (id) =>{
     dispatch(deleteData(id))
     .then((r)=>{dispatch(getCountriesData())
       navigate('/')
     });
   }
-console.log(countriesData);
+
   return (
     <Box>
       <Flex padding="0 1rem" mb="2rem">
@@ -73,10 +76,6 @@ console.log(countriesData);
                 <Td>{el.population}</Td>
                 <Td style={{background:"orange",color:"green",borderRadius:"30px"}}><Link to={`/country/${el.id}`}>Edit</Link></Td>
                 <Td style={{color:"red"}}><BUTTON id={el.id} handledelete={handleDelete}/></Td>
-
-
-
-
                </Tr>
                
               )
