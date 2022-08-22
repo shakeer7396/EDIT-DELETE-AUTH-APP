@@ -7,7 +7,7 @@ const getCountriesRequest = () =>{
 const getCountriesSuccess = (payload) =>{
     return{type:types.GET_COUNTRIES_SUCCESS,payload}
 }
-const getCountriesFailure = (payload) =>{
+const getCountriesFailure = () =>{
     return{type:types.GET_COUNTRIES_FAILURE}
 }
 
